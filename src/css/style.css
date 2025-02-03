@@ -1,0 +1,215 @@
+:root {
+  --background: #f5f5eb;
+  --text: #1a1a1a;
+  --card-bg: #ffffff;
+  --accent: #8b0000;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --meta-text: #666666;
+}
+
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --text: #f5f5eb;
+  --card-bg: #262626;
+  --accent: #c41e3a;
+  --shadow: rgba(0, 0, 0, 0.25);
+  --meta-text: #999999;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color 0.5s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text);
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 2rem 0 3rem;
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  text-shadow: 2px 2px 0px var(--shadow);
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0.8);
+  transition: transform 0.3s ease;
+}
+
+h1:hover::after {
+  transform: scaleX(1);
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  border: 2px solid var(--accent);
+  color: var(--text);
+  width: 45px;
+  height: 45px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#theme-toggle:hover {
+  transform: rotate(180deg);
+  background: var(--accent);
+  color: var(--card-bg);
+}
+
+#news-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  padding: 1rem;
+}
+
+.news-item {
+  background: var(--card-bg);
+  border: 1px solid var(--shadow);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 8px 8px 0px var(--shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.news-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s ease;
+  z-index: 0;
+}
+
+.news-item:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px var(--shadow);
+}
+
+.news-item:hover::before {
+  transform: translateY(0);
+  opacity: 0.05;
+}
+
+.news-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  z-index: 1;
+}
+
+.news-title a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.news-title a:hover {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.news-meta {
+  color: var(--meta-text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--shadow);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+#load-more {
+  display: block;
+  width: 240px;
+  margin: 4rem auto;
+  padding: 1.2rem 2.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+#load-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+#load-more:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+#load-more:hover::before {
+  transform: translateX(100%);
+}
+
+#load-more:disabled {
+  background-color: var(--meta-text);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
