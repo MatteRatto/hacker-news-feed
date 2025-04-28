@@ -62,19 +62,6 @@ Customize the appearance by modifying these CSS variables:
 - Webpack for bundling
 - Lodash for utilities
 
-## Project Structure 📁
-
-```
-src/
-├── js/
-│   ├── api.js
-│   ├── newsManager.js
-│   ├── ui.js
-│   └── index.js
-└── css/
-    └── style.css
-```
-
 ## Access and Contribution 🔑
 
 This project requires specific environment variables to function. Please contact the repository owner for access and contribution guidelines.
